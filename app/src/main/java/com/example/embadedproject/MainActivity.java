@@ -65,7 +65,7 @@ public static String month="5";
 
                     if (response.code() == 500) {
 
-                        showToast("서버오류");
+                    //    showToast("서버오류");
                     }else if(response.code()==501){
                                           }else if(response.code()==502){
                     }
