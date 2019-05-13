@@ -3,6 +3,7 @@ package com.example.embadedproject;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.session.MediaSession;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.AndroidCharacter;
@@ -21,6 +22,8 @@ import com.example.embadedproject.model.JWTToken;
 import com.example.embadedproject.remote.APIcall;
 import com.example.embadedproject.remote.RetroClass;
 import com.example.embadedproject.tokenmanager.TokenManager;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import org.w3c.dom.Text;
 
@@ -36,9 +39,16 @@ import retrofit2.Retrofit;
 public class LoginActivity extends AppCompatActivity {
     private long time =0;
     private TokenManager tokenManager;
+    private AlertDialog dialog;
 
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(dialog != null){
+            dialog.dismiss();
+            dialog=null;
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -66,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         TextView findpwButton = (TextView) findViewById(R.id.findpwButton);
         TextView findidButton = (TextView) findViewById(R.id.findidButton);
         TextView tv = (TextView) findViewById(R.id.textView);
-        String str = "Courait";
+        String str = "CourAIt";
         SpannableStringBuilder ssb = new SpannableStringBuilder(str);
         ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#E74C3C")), 4, 6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         tv.setText(ssb);
@@ -118,20 +128,45 @@ public class LoginActivity extends AppCompatActivity {
                    @Override
                    public void onResponse(Call<JWTToken> call, Response<JWTToken> response) {
 
-                       JWTToken jwtToken = response.body();
-                      tokenManager.createSession(email,jwtToken.getToken().toString());
+                       if (response.isSuccessful()){
+                            JWTToken jwtToken = response.body();
+                            tokenManager.createSession(jwtToken.getToken().toString());
 
-                       showToast(jwtToken.getToken().toString());
-                       if(jwtToken.getToken().length()!=0){
-                           Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
-                           startActivity(loginIntent);
-                       }
+                            //String status = response.body().toString();
+
+                                showToast(jwtToken.getToken().toString());
+
+                            if(response.code() == 200) {
+                                // showToast(""+status);
+                                // showToast(""+response.code());
+                                Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                loginIntent.putExtra("token",jwtToken.getToken().toString());
+                                startActivity(loginIntent);
+                                finish();
+
+                            }
+                        }else{
+                                if(response.code()==500){
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    dialog = builder.setMessage("이메일 혹은 비밀번호가 틀렸습니다.").setNegativeButton("확인", null).create();
+                                    dialog.show();
+                                }
+                            }
+
+
+
+                        /*else if(response.code()==500){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                dialog = builder.setMessage("계정을 다시 확인하세요.").setNegativeButton("다시시도", null).create();
+                                dialog.show();
+                            */
+
                    }
 
                    @Override
                    public void onFailure(Call<JWTToken> call, Throwable t) {
 
-                       showToast("로그인 실패");
+                            showToast("요청 자체가 가질 않음. 인터넷 연결 확인 부탁");
 
                    }
                });

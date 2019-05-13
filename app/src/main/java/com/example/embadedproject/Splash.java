@@ -19,7 +19,7 @@ private ImageView iv;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        String str = "Courait";
+        String str = "CourAIt";
         tv =(TextView)findViewById(R.id.tv);
         SpannableStringBuilder ssb = new SpannableStringBuilder(str);
         ssb.setSpan(new ForegroundColorSpan(Color.parseColor("#E74C3C")),4,6, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);

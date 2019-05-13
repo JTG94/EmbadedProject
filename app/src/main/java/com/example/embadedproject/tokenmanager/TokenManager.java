@@ -9,7 +9,7 @@ public class TokenManager {
     private  SharedPreferences.Editor editor;
     private int Mode =0;
     private static final String REFNAME="JWTTOKEN";
-    private static final String KEY_USER_NAME="username";
+
     private  static  final String KEY_JWT_TOKEN="jwttoken";
     private Context context;
 
@@ -21,11 +21,15 @@ public class TokenManager {
     }
 
 
-    public void createSession(String username, String Jwtvalue)
+    public void createSession(String Jwtvalue)
     {
-        editor.putString(KEY_USER_NAME,username);
+
         editor.putString(KEY_JWT_TOKEN,Jwtvalue);
         editor.commit();
+    }
+    public String getto(){
+        String result = sharedPreferences.getString(KEY_JWT_TOKEN,"");
+        return result;
     }
 
 }
