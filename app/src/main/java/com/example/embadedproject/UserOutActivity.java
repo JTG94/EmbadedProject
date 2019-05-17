@@ -16,6 +16,7 @@ import com.example.embadedproject.Retrofit.RetrofitClient;
 import com.example.embadedproject.model.Message;
 import com.example.embadedproject.remote.APIcall;
 import com.example.embadedproject.remote.RetroClass;
+import com.example.embadedproject.tokenmanager.TokenManager;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
@@ -28,7 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class FindpwActivity extends AppCompatActivity {
+public class UserOutActivity extends AppCompatActivity {
+    private TokenManager tokenManager;
     private AlertDialog dialog1;
 
     @Override
@@ -39,52 +41,42 @@ public class FindpwActivity extends AppCompatActivity {
             dialog1=null;
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_findpw);
+        setContentView(R.layout.activity_user_out);
+        tokenManager = new TokenManager(getApplicationContext());
 
+        ImageButton backbtn = (ImageButton) findViewById(R.id.backbtn3);
+        final EditText pass = (EditText)findViewById(R.id.passText);
 
+        Button useroutbtn = (Button)findViewById(R.id.useroutButton);
 
-        final EditText name = (EditText)findViewById(R.id.nameText);
-        final EditText email = (EditText)findViewById(R.id.emailText);
-        final EditText phone = (EditText)findViewById(R.id.phoneText);
-        Button findpwbtn =(Button)findViewById(R.id.findpwButton);
-        ImageButton backbtn = (ImageButton) findViewById(R.id.backbtn2);
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent backIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent backIntent = new Intent(getApplicationContext(),MainActivity.class);
                 backIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(backIntent);
 
             }
         });
 
-        findpwbtn.setOnClickListener(new View.OnClickListener() {
+        useroutbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final APIcall apiCall = RetroClass.getApICall();
-                final String name1 =name.getText().toString();
-                final String email1 = email.getText().toString();
-                final String phone1 = phone.getText().toString();
-              if(name.length() ==0){
-                    name.setError("이름을 입력하세요.");
-                    name.requestFocus();
-                    return;
-                }else if(email1.isEmpty()){
-                phone.setError("이메일을 입력하세요.");
-                return;
-                } else if(phone1.isEmpty()){
-                    phone.setError("핸드폰 번호를 입력하세요.");
-                    return;
+                final String pass1 =pass.getText().toString();
 
+                if(pass.length() ==0) {
+                    pass.setError("비밀번호를 입력하세요.");
+                    pass.requestFocus();
+                    return;
                 }
-                Call<Message> findpwcall = apiCall.findUserpw(name1,email1,phone1);
-
-                findpwcall.enqueue(new Callback<Message>() {
+                String token = tokenManager.getto();
+                Call<Message> useroutcall = apiCall.outreq(token,pass1);
+                useroutcall.enqueue(new Callback<Message>() {
                     @Override
                     public void onResponse(Call<Message> call, Response<Message> response) {
                         if (response.isSuccessful()) {
@@ -97,25 +89,22 @@ public class FindpwActivity extends AppCompatActivity {
                             if (response.code() == 200) {
                                 // showToast(""+status);
                                 // showToast(""+response.code());
-                                AlertDialog.Builder builder = new AlertDialog.Builder(FindpwActivity.this);
-                                dialog1 = builder.setMessage("" + message.getMessage().toString()).setNegativeButton("확인", null).create();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(UserOutActivity.this);
+                                dialog1 = builder.setMessage(""+message.getMessage().toString()).setNegativeButton("확인", null).create();
                                 dialog1.show();
                                 /*Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(loginIntent);*/
 
                             }
-                        } else {
+                        }else{
 
                             if (response.code() == 500) {
 
-                                showToast("입력하신 정보가 일치하지 않습니다.");
-                            }
-                            if(response.code()==501)
-                            {
-                                showToast("죄송합니다. 메일서버가 현재 오류가 났습니다.");
+                                showToast("비밀번호가 틀렸습니다.");
                             }
                         }
                     }
+
                             /*else if(response.code()==500){
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 dialog = builder.setMessage("계정을 다시 확인하세요.").setNegativeButton("다시시도", null).create();
@@ -138,11 +127,16 @@ public class FindpwActivity extends AppCompatActivity {
                     }
                 });
 
-            }
-        });
-    }
-        void showToast(String msg)
-        {
-            Toast.makeText(this, ""+msg, Toast.LENGTH_LONG).show();
+                }
+            });
         }
+    void showToast(String msg)
+    {
+        Toast.makeText(this, ""+msg, Toast.LENGTH_LONG).show();
+    }
 }
+
+
+
+
+

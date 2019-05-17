@@ -6,6 +6,7 @@ import com.example.embadedproject.model.MonthValue;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -21,6 +22,12 @@ public interface APIcall {
     Call<JWTToken> userlogin(
             @Field("email") String email,
             @Field("password") String password
+    );
+
+    @DELETE("user/withdrawl")
+    Call<Message> outreq(
+            @Header("x-access-token") String token,
+            @Field("pass") String pass
     );
 
 
