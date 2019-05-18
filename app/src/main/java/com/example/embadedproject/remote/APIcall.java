@@ -10,6 +10,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -24,11 +25,21 @@ public interface APIcall {
             @Field("password") String password
     );
 
-    @DELETE("user/withdrawl")
-    Call<Message> outreq(
+    @FormUrlEncoded
+    @HTTP(method = "DELETE", path = "/user/withdrawl", hasBody = true)
+    Call<Message> userOut(
             @Header("x-access-token") String token,
-            @Field("pass") String pass
+            @Field("password") String password
     );
+
+    @POST("/user/feedback")
+    @FormUrlEncoded
+    Call<Message> questionReq(
+            @Header("x-access-token") String token,
+            @Field("content") String content
+
+    );
+
 
 
     @POST("auth/reg")

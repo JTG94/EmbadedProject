@@ -92,6 +92,32 @@ public class RegActivity extends AppCompatActivity {
                 final String password1 = password.getText().toString();
                 final String coupang_id1 = coupang_id.getText().toString();
                 final String coupang_pw1 = coupang_pw.getText().toString();
+
+                if(name1.length() ==0){
+                    name.setError("이름을 입력해주세요.");
+                    name.requestFocus();
+                    return;
+                }else if(email1.isEmpty()){
+                    email.setError("이메일을 입력해주세요.");
+                    return;
+
+                }else if(phone1.isEmpty()){
+                    phone.setError("핸드폰 번호를 입력해주세요.");
+                    return;
+
+                }else if(password1.isEmpty()){
+                    password.setError("비밀번호를 입력해주세요.");
+                    return;
+
+                }else if(coupang_id1.isEmpty()){
+                    coupang_id.setError("쿠팡 아이디를 입력해주세요.");
+                    return;
+
+                }else if(coupang_pw1.isEmpty()){
+                    coupang_pw.setError("쿠팡 비밀번호를 입력해주세요.");
+                    return;
+
+                }
                 Call<Message> regcall = apiCall.registerUser(name1,email1,phone1,password1,coupang_id1,coupang_pw1);
 
                 regcall.enqueue(new Callback<Message>() {

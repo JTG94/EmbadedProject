@@ -16,21 +16,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG = "MainActivity";
+public class MainActivity2 extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "MainActivity2";
     private SectionPagerAdapter mSectionPagerAdapter;
     private ViewPager mViewPager;
     private long time =0;
     private DrawerLayout mdrawerlayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main2);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -61,13 +62,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        tabLayout.getTabAt(0).setText("월 별");
-        tabLayout.getTabAt(1).setText("일 별");
+        tabLayout.getTabAt(0).setText("예산 설정");
+        tabLayout.getTabAt(1).setText("이번 달 예산 현황");
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(0);
+        MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -75,17 +76,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch(menuItem.getItemId()){
                     case R.id.navigation_month:
-
-                        break;
-                    case R.id.navigation_money:
-                        Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                         Intent intent = new Intent(MainActivity2.this, MainActivity.class);
                          startActivity(intent);
                          finish();
                         break;
+                    case R.id.navigation_money:
+
+                        break;
                     case R.id.navigation_chart:
-                        Intent intent2 = new Intent(MainActivity.this, MainActivity3.class);
-                        startActivity(intent2);
-                        finish();
+                          Intent intent2 = new Intent(MainActivity2.this, MainActivity3.class);
+                          startActivity(intent2);
+                          finish();
                         break;
                 }
 
@@ -96,8 +97,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     private void setupViewPager(ViewPager viewPager) {
         SectionPagerAdapter adapter = new SectionPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment());
-        adapter.addFragment(new Tab2Fragment());
+        adapter.addFragment(new Tab3Fragment());
+        adapter.addFragment(new Tab4Fragment());
         viewPager.setAdapter(adapter);
     }
     @Override
@@ -113,10 +114,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             finish();
             return;
         }
-
-
-
-
     }
 
     @Override

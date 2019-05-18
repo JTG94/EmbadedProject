@@ -1,9 +1,11 @@
 package com.example.embadedproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -36,22 +38,23 @@ public class UserOutActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if(dialog1 != null){
+        if (dialog1 != null) {
             dialog1.dismiss();
-            dialog1=null;
+            dialog1 = null;
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_user_out);
         tokenManager = new TokenManager(getApplicationContext());
-
+        String token = tokenManager.getto();
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserOutActivity.this);
         ImageButton backbtn = (ImageButton) findViewById(R.id.backbtn3);
-        final EditText pass = (EditText)findViewById(R.id.passText);
-
-        Button useroutbtn = (Button)findViewById(R.id.useroutButton);
+        final EditText pass = (EditText) findViewById(R.id.passText);
+        Button useroutbtn = (Button) findViewById(R.id.useroutButton);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +62,6 @@ public class UserOutActivity extends AppCompatActivity {
                 Intent backIntent = new Intent(getApplicationContext(),MainActivity.class);
                 backIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(backIntent);
-
             }
         });
 
@@ -67,74 +69,52 @@ public class UserOutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final APIcall apiCall = RetroClass.getApICall();
-                final String pass1 =pass.getText().toString();
+                final String pass1 = pass.getText().toString();
 
-                if(pass.length() ==0) {
-                    pass.setError("비밀번호를 입력하세요.");
-                    pass.requestFocus();
+                if (pass.length() == 0) {
+                    showToast("비밀번호를 입력하세요");
                     return;
-                }
-                String token = tokenManager.getto();
-                Call<Message> useroutcall = apiCall.outreq(token,pass1);
-                useroutcall.enqueue(new Callback<Message>() {
-                    @Override
-                    public void onResponse(Call<Message> call, Response<Message> response) {
-                        if (response.isSuccessful()) {
+                } else {
+
+                    Call<Message> userOutcall = apiCall.userOut(token, pass1);
+                    userOutcall.enqueue(new Callback<Message>() {
+                        @Override
+                        public void onResponse(Call<Message> call, Response<Message> response) {
                             Message message = response.body();
-
-                            /*  try {*/
-
-                           /* Message message = response.body();
-                            //String status = response.body().toString();*/
-                            if (response.code() == 200) {
-                                // showToast(""+status);
-                                // showToast(""+response.code());
-                                AlertDialog.Builder builder = new AlertDialog.Builder(UserOutActivity.this);
-                                dialog1 = builder.setMessage(""+message.getMessage().toString()).setNegativeButton("확인", null).create();
+                            if(response.code()==200) {
+                                dialog1 = builder.setMessage("회원 탈퇴가 완료되었습니다.").setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                                    public void onClick(
+                                            DialogInterface dialog, int id) {
+                                        Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                                        startActivity(loginIntent);
+                                        finish();;
+                                    }
+                                }).create();
                                 dialog1.show();
-                                /*Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(loginIntent);*/
 
                             }
-                        }else{
 
-                            if (response.code() == 500) {
-
-                                showToast("비밀번호가 틀렸습니다.");
-                            }
+                            else if (response.code() == 501)
+                                showToast("비밀번호가 올바르지 않습니다");
                         }
-                    }
 
-                            /*else if(response.code()==500){
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                dialog = builder.setMessage("계정을 다시 확인하세요.").setNegativeButton("다시시도", null).create();
-                                dialog.show();
-                            }*/
-                      /*  }catch(Exception e){
-                            if(response.code()==500){
-                                showToast("500 코드 인지"+message.getMessage().toString());
-                            }
+                        @Override
+                        public void onFailure(Call<Message> call, Throwable t) {
+                            showToast("네트워크 통신 상태를 확인하세요.");
 
-
-                            e.printStackTrace();
-                        }*/
-
-                    /* }*/
-
-                    @Override
-                    public void onFailure(Call<Message> call, Throwable t) {
-                        showToast("Failer에서 응답");
-                    }
-                });
-
+                        }
+                    });
                 }
-            });
-        }
+            }
+        });
+    }
+
     void showToast(String msg)
     {
         Toast.makeText(this, ""+msg, Toast.LENGTH_LONG).show();
     }
 }
+
 
 
 
