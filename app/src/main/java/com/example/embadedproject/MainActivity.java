@@ -50,7 +50,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Integer month= LocalDate.now().getMonthValue();
-        int year=LocalDate.now().getYear();
+        Integer year=LocalDate.now().getYear();
+        /*Intent YearIntent = new Intent(getApplicationContext(), Tab1Fragment.class);
+        YearIntent.putExtra("year",year);
+        Intent MonthIntent = new Intent(getApplicationContext(), Tab1Fragment.class);
+        MonthIntent.putExtra("month",month);*/
 
 
 
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(0);
         menuItem.setChecked(true);
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -131,9 +136,14 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 ListView listview=(ListView)findViewById(R.id.listVIew);
                 listview.setAdapter(adapter);
                 TextView monthText=(TextView)findViewById(R.id.MainMonth);
-                monthText.setText(month.toString()+"월");
+                monthText.setText(month.toString());
                 TextView monthpricetext=(TextView)findViewById(R.id.MonthPrice);
-                monthpricetext.setText(""+monthinfo.month_price+"원");
+                monthpricetext.setText(""+monthinfo.month_price);
+                TextView yeartext=findViewById(R.id.yearSave);
+                yeartext.setText(year.toString());
+
+
+
 
             }
 
@@ -150,6 +160,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 TextView prevText=(TextView)findViewById(R.id.prevText);
                 prevText.setText(prv.diff_price.toString()+"원");
 
+
             }
 
             @Override
@@ -158,8 +169,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-       /* ImageButton prevmonth=(ImageButton)findViewById(R.id.prevmonth);
-        prevmonth.*/
+
+
+
+
+
 
     }
 
