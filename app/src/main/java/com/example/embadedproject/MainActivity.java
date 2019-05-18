@@ -16,7 +16,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.embadedproject.model.Budget;
+import com.example.embadedproject.model.MonthValue;
+import com.example.embadedproject.model.PrevCompare;
+import com.example.embadedproject.remote.APIcall;
+import com.example.embadedproject.remote.RetroClass;
+import com.example.embadedproject.tokenmanager.TokenManager;
+
+import java.time.LocalDate;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,12 +42,16 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private ViewPager mViewPager;
     private long time =0;
     private DrawerLayout mdrawerlayout;
+    private TokenManager tokenManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Integer month= LocalDate.now().getMonthValue();
+        int year=LocalDate.now().getYear();
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -92,6 +113,54 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 return false;
             }
         });
+
+        tokenManager = new TokenManager(getApplicationContext());
+
+
+        Intent intent = getIntent();
+        // String token = ((Intent) intent).getExtras().getString("token");
+        String token = tokenManager.getto();
+        final APIcall apiCall = RetroClass.getApICall();
+        Call<MonthValue> monthcall=apiCall.MontlyList(token,year,month);
+        Call<Budget> maincall = apiCall.requestBudget(token);
+        monthcall.enqueue(new Callback<MonthValue>() {
+            @Override
+            public void onResponse(Call<MonthValue> call, Response<MonthValue> response) {
+                MonthValue monthinfo=response.body();
+                ListAdapter adapter=new ListAdapter(getApplicationContext(),month,monthinfo);
+                ListView listview=(ListView)findViewById(R.id.listVIew);
+                listview.setAdapter(adapter);
+                TextView monthText=(TextView)findViewById(R.id.MainMonth);
+                monthText.setText(month.toString()+"월");
+                TextView monthpricetext=(TextView)findViewById(R.id.MonthPrice);
+                monthpricetext.setText(""+monthinfo.month_price+"원");
+
+            }
+
+            @Override
+            public void onFailure(Call<MonthValue> call, Throwable t) {
+
+            }
+        });
+        Call<PrevCompare> Prevcall=apiCall.PrevCompareCall(token,month);
+        Prevcall.enqueue(new Callback<PrevCompare>() {
+            @Override
+            public void onResponse(Call<PrevCompare> call, Response<PrevCompare> response) {
+                PrevCompare prv=response.body();
+                TextView prevText=(TextView)findViewById(R.id.prevText);
+                prevText.setText(prv.diff_price.toString()+"원");
+
+            }
+
+            @Override
+            public void onFailure(Call<PrevCompare> call, Throwable t) {
+
+            }
+        });
+
+       /* ImageButton prevmonth=(ImageButton)findViewById(R.id.prevmonth);
+        prevmonth.*/
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
