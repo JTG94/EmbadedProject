@@ -8,10 +8,7 @@ import java.util.ArrayList;
 public class MonthValue {
      @SerializedName("month_price") @Expose public int month_price;
      @SerializedName("day_price") @Expose public Day_price day_price;
-
-
-            @SerializedName("month_list")@Expose
-            ArrayList<data> month_list=new ArrayList<>();
+     @SerializedName("month_list")@Expose ArrayList<data> month_list=new ArrayList<>();
 
 
             public ArrayList<data> getMonth_list() {

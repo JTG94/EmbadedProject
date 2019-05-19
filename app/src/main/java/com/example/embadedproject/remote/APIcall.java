@@ -2,6 +2,7 @@ package com.example.embadedproject.remote;
 
 import com.example.embadedproject.model.Budget;
 import com.example.embadedproject.model.BudgetStatus;
+import com.example.embadedproject.model.DayList;
 import com.example.embadedproject.model.JWTToken;
 import com.example.embadedproject.model.Message;
 import com.example.embadedproject.model.MonthValue;
@@ -28,6 +29,14 @@ public interface APIcall {
     Call<Budget> requestBudget(
             @Header("x-access-token") String token
 
+    );
+
+    @GET("history/day")
+    Call<DayList> DayListCall(
+            @Header("x-access-token") String token,
+            @Query("year") int year,
+            @Query("month") int month,
+            @Query("day") int day
     );
 
     @GET("/history/prev")
