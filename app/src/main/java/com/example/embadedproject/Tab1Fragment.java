@@ -103,9 +103,14 @@ public class Tab1Fragment extends Fragment {
                 Prevcall.enqueue(new Callback<PrevCompare>() {
                     @Override
                     public void onResponse(Call<PrevCompare> call, Response<PrevCompare> response) {
-                        PrevCompare prv=response.body();
+                        TextView yeartext=getView().findViewById(R.id.yearSave);
+                        Integer intYear=new Integer(yeartext.getText().toString());
                         TextView prevText=getView().findViewById(R.id.prevText);
-                        prevText.setText(prv.diff_price.toString()+"원");
+                        PrevCompare prv=response.body();
+                        if(intYear!=LocalDate.now().getYear())
+                            prevText.setText("전 월 대비 지출조회는 현재 년도만 지원합니다");
+
+                        else prevText.setText(prv.diff_price.toString()+"원");
 
                     }
 

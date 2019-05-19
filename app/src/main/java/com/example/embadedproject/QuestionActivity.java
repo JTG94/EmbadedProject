@@ -1,5 +1,6 @@
 package com.example.embadedproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         tokenManager = new TokenManager(getApplicationContext());
         ImageButton backbtn = (ImageButton) findViewById(R.id.backbtn4);
-        //메인액티비티 없어서 튕김
+
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,8 +53,6 @@ public class QuestionActivity extends AppCompatActivity {
         });
 
 
-        Intent intent = getIntent();
-        // String token = ((Intent) intent).getExtras().getString("token");
         String token = tokenManager.getto();
 
         final EditText content_txt = (EditText)findViewById(R.id.contentText);
@@ -72,7 +71,14 @@ public class QuestionActivity extends AppCompatActivity {
 
                         Log.e("message", message.message);
                         AlertDialog.Builder builder = new AlertDialog.Builder(QuestionActivity.this);
-                        dialog1 = builder.setMessage("메세지가 관리자에게 전송되었습니다.").setNegativeButton("확인", null).create();
+                        dialog1 = builder.setMessage("메세지가 관리자에게 전송되었습니다.").setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(
+                                    DialogInterface dialog, int id) {
+                                Intent Ok = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(Ok);
+                                finish();
+                            }
+                        }).create();
                         dialog1.show();
                     }
 

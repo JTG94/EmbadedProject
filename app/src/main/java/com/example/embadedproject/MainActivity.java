@@ -131,19 +131,23 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         monthcall.enqueue(new Callback<MonthValue>() {
             @Override
             public void onResponse(Call<MonthValue> call, Response<MonthValue> response) {
-                MonthValue monthinfo=response.body();
-                ListAdapter adapter=new ListAdapter(getApplicationContext(),month,monthinfo);
-                ListView listview=(ListView)findViewById(R.id.listVIew);
-                listview.setAdapter(adapter);
-                TextView monthText=(TextView)findViewById(R.id.MainMonth);
-                monthText.setText(month.toString());
-                TextView monthpricetext=(TextView)findViewById(R.id.MonthPrice);
-                monthpricetext.setText(""+monthinfo.month_price);
-                TextView yeartext=findViewById(R.id.yearSave);
-                yeartext.setText(year.toString());
+                TextView monthText = (TextView) findViewById(R.id.MainMonth);
+                TextView monthpricetext = (TextView) findViewById(R.id.MonthPrice);
+                TextView yeartext = findViewById(R.id.yearSave);
+                if(response.code()==200) {
+                    MonthValue monthinfo = response.body();
+                    ListAdapter adapter = new ListAdapter(getApplicationContext(), month, monthinfo);
+                    ListView listview = (ListView) findViewById(R.id.listVIew);
+                    listview.setAdapter(adapter);
 
-
-
+                    monthText.setText(month.toString());
+                    monthpricetext.setText("" + monthinfo.month_price);
+                    yeartext.setText(year.toString());
+                }
+                else if(response.code()==501) {
+                    monthpricetext.setText("0");
+                    showToast("결과 없음");
+                }
 
             }
 
