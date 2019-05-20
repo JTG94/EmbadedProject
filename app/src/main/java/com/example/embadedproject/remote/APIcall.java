@@ -7,6 +7,7 @@ import com.example.embadedproject.model.JWTToken;
 import com.example.embadedproject.model.Message;
 import com.example.embadedproject.model.MonthValue;
 import com.example.embadedproject.model.PrevCompare;
+import com.example.embadedproject.model.PurchaseList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,8 +21,15 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface APIcall {
+    @POST("/history/new")
+    Call<PurchaseList> InputPurchase(
+            @Header("x-access-token") String token,
+            @Field("name") String name,
+            @Field("price") int price,
+            @Field("date") String date
+    );
     @GET("/history/budget")
-    Callback<BudgetStatus> requestBudgetStatus(
+    Call<BudgetStatus> requestBudgetStatus(
             @Header("x-access-token") String token
     );
 
@@ -111,13 +119,6 @@ public interface APIcall {
             @Field("password") String password
     );
 
-    @POST("/history/new")
-    @FormUrlEncoded
-    void listInput(
-            @Header("x-access-token") String token,
-            @Field("name") String name,
-            @Field("price") int price,
-            @Field("date") String date
-    );
+
 
 }

@@ -68,8 +68,6 @@ public class QuestionActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Message> call, Response<Message> response) {
                         Message message = response.body();
-
-                        Log.e("message", message.message);
                         AlertDialog.Builder builder = new AlertDialog.Builder(QuestionActivity.this);
                         dialog1 = builder.setMessage("메세지가 관리자에게 전송되었습니다.").setNegativeButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(
