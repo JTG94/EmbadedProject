@@ -1,5 +1,6 @@
 package com.example.embadedproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -88,7 +90,11 @@ public class Tab1Fragment extends Fragment {
                         }
                         else if(response.code()==501) {
                             monthpricetext.setText("0");
+                            NullListAdapter adapter = new NullListAdapter(getActivity().getApplicationContext());
+                            ListView listview = (ListView) getView().findViewById(R.id.listVIew);
+                            listview.setAdapter(adapter);
                             showToast("결과 없음");
+
                         }
 
                     }
@@ -161,14 +167,21 @@ public class Tab1Fragment extends Fragment {
                             monthpricetext.setText("" + monthinfo.month_price);
                             TextView yeartext = getView().findViewById(R.id.yearSave);
                         }
-                        else if(response.code()==501)
+                        else if(response.code()==501){
+                            TextView monthpricetext=getView().findViewById(R.id.MonthPrice);
+                            monthpricetext.setText("0");
+
+                            NullListAdapter adapter = new NullListAdapter(getActivity().getApplicationContext());
+                            ListView listview = (ListView) getView().findViewById(R.id.listVIew);
+                            listview.setAdapter(adapter);
                             showToast("결과 없음");
+                        }
 
                     }
 
                     @Override
                     public void onFailure(Call<MonthValue> call, Throwable t) {
-
+                        showToast("네트워크 상태를 확인하세요");
                     }
                 });
                 Call<PrevCompare> Prevcall=apiCall.PrevCompareCall(token,intMonth);
@@ -184,12 +197,20 @@ public class Tab1Fragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<PrevCompare> call, Throwable t) {
-
+                        showToast("네트워크 상태를 확인하세요");
                     }
                 });
 
             }
 
+        });
+        Button cla=getView().findViewById(R.id.calendarbutton);
+        cla.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity().getApplicationContext(), Main4Activity.class);
+                startActivity(intent);
+            }
         });
 
 

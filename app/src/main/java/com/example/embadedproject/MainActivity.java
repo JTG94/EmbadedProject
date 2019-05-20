@@ -146,6 +146,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 }
                 else if(response.code()==501) {
                     monthpricetext.setText("0");
+                    NullListAdapter adapter = new NullListAdapter(getApplicationContext());
+                    ListView listview = (ListView) findViewById(R.id.listVIew);
+                    listview.setAdapter(adapter);
                     showToast("결과 없음");
                 }
 

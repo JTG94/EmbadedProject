@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <Button
+        android:id="@+id/calendarbutton"
+        android:layout_width="92dp"
+        android:layout_height="21dp"
+        android:layout_below="@+id/coupangpwText"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_round"
+        android:text="달력으로보기"
+        android:textColor="#ffffff"
+        android:textSize="10dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yearSave" />
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
@@ -49,7 +66,7 @@
         android:id="@+id/MainMonth"
         android:layout_width="0dp"
         android:layout_height="41dp"
-        android:text="12"
+        android:text="초기화면"
         android:textSize="30dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
         app:layout_constraintEnd_toStartOf="@+id/textView10"
@@ -61,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="21dp"
-        android:text="6000000"
+        android:text="초기화면"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,4 +166,5 @@
         android:textSize="40dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/MonthPrice"
         app:layout_constraintStart_toEndOf="@+id/MonthPrice" />
+
 </android.support.constraint.ConstraintLayout>

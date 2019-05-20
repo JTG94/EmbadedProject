@@ -1,5 +1,6 @@
 package com.example.embadedproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -71,8 +73,12 @@ public class Tab2Fragment extends Fragment {
                     DayPriceListAdapter adapter = new DayPriceListAdapter(getActivity().getApplicationContext(), dayinfo.getDay_list());
                     ListView listview = getView().findViewById(R.id.listView2);
                     listview.setAdapter(adapter);
-                } else if (response.code() == 501)
+                } else if (response.code() == 501) {
+                    NullListAdapter adapter = new NullListAdapter(getActivity().getApplicationContext());
+                    ListView listview = (ListView) getView().findViewById(R.id.listView2);
+                    listview.setAdapter(adapter);
                     showToast("결과없음");
+                }
             }
 
             @Override
@@ -118,8 +124,13 @@ public class Tab2Fragment extends Fragment {
                                 DayPriceListAdapter adapter = new DayPriceListAdapter(getActivity().getApplicationContext(), dayinfo.getDay_list());
                                 ListView listview = getView().findViewById(R.id.listView2);
                                 listview.setAdapter(adapter);
-                            } else if (response.code() == 501)
+                            } else if (response.code() == 501) {
+                                monthprice.setText("0");
+                                NullListAdapter adapter = new NullListAdapter(getActivity().getApplicationContext());
+                                ListView listview = (ListView) getView().findViewById(R.id.listView2);
+                                listview.setAdapter(adapter);
                                 showToast("결과없음");
+                            }
                         }
 
                         @Override
@@ -171,6 +182,9 @@ public class Tab2Fragment extends Fragment {
                                 listview.setAdapter(adapter);
                             } else if (response.code() == 501){
                                 showToast("결과없음");
+                                NullListAdapter adapter = new NullListAdapter(getActivity().getApplicationContext());
+                                ListView listview = (ListView) getView().findViewById(R.id.listView2);
+                                listview.setAdapter(adapter);
                                 monthprice.setText("0");
                             }
 
@@ -184,6 +198,14 @@ public class Tab2Fragment extends Fragment {
 
                     });
                 }
+            }
+        });
+        Button listinputbtn =getView().findViewById(R.id.InputList);
+        listinputbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity().getApplicationContext(), InputPurchase.class);
+                startActivity(intent);
             }
         });
 
