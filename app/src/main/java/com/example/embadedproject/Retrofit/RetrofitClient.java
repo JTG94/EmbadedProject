@@ -16,7 +16,7 @@ public class RetrofitClient {
         if(instance == null)
 
             instance = new Retrofit.Builder()
-                        .baseUrl("http://ec2-13-124-76-148.ap-northeast-2.compute.amazonaws.com:7001/")
+                        .baseUrl("http://ec2-52-78-171-9.ap-northeast-2.compute.amazonaws.com:7001/")
                         .addConverterFactory(ScalarsConverterFactory.create())
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .build();
