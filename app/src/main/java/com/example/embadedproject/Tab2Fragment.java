@@ -33,7 +33,7 @@ public class Tab2Fragment extends Fragment {
     private TokenManager tokenManager;
     Integer month = LocalDate.now().getMonthValue();
     Integer year = LocalDate.now().getYear();
-    Integer day = LocalDate.now().getDayOfMonth();
+    Integer day = LocalDate.now().getDayOfMonth()-1;
 
 
     @Nullable
@@ -91,7 +91,6 @@ public class Tab2Fragment extends Fragment {
         prevmonth2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView test2=getView().findViewById(R.id.testview);
 
                 String curMonth = monthtext.getText().toString();
                 String curDay = daytext.getText().toString();
@@ -101,7 +100,6 @@ public class Tab2Fragment extends Fragment {
                 Integer int_month2 = new Integer(curMonth);
                 Integer int_year2 = new Integer(curYear);
 
-                test2.setText(int_day2.toString()+int_month2.toString()+int_year2.toString());
 
 
 
@@ -147,8 +145,6 @@ public class Tab2Fragment extends Fragment {
         nextmonth2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView test2=getView().findViewById(R.id.testview);
-
                 String curMonth = monthtext.getText().toString();
                 String curDay = daytext.getText().toString();
                 String curYear = yeartext.getText().toString();
@@ -157,7 +153,6 @@ public class Tab2Fragment extends Fragment {
                 Integer int_month2 = new Integer(curMonth);
                 Integer int_year2 = new Integer(curYear);
 
-                test2.setText(int_day2.toString()+int_month2.toString()+int_year2.toString());
 
 
 

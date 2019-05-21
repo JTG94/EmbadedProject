@@ -49,33 +49,35 @@ public class InputPurchase extends AppCompatActivity {
                 EditText product_name=findViewById(R.id.productName);
                 EditText product_price=findViewById(R.id.productPrice2);
                 EditText product_date=findViewById(R.id.productDate);
-                String productname = product_name.getText().toString();
-                Integer productprice=new Integer(product_price.getText().toString());
-                String productdate=product_date.getText().toString();
-                Log.e("sibal",productname+productprice+productdate);
 
-                if(productname.length()==0 || product_price.getText().toString().length()==0||productdate.length()==0)
+                if(product_name.getText().length()==0 || product_price.getText().toString().length()==0||product_date.getText().length()==0)
                     showToast("상품명, 금액, 구매날짜를 모두 입력해주세요.");
 
                 else{
+                    String productname = product_name.getText().toString();
+                    Integer productprice=new Integer(product_price.getText().toString());
+                    String productdate=product_date.getText().toString();
+
+
+                    showToast(productname+productprice.toString()+productdate);
+                    int price3=productprice;
+
                     final APIcall apiCall = RetroClass.getApICall();
-                    Call<PurchaseList> purchasecall=apiCall.InputPurchase(token,productname,productprice.intValue(),productdate);
-                    purchasecall.enqueue(new Callback<PurchaseList>() {
+                    Call<PurchaseList> purcall=apiCall.InputPurchase(token,productname,price3,productdate);
+                    purcall.enqueue(new Callback<PurchaseList>() {
                         @Override
                         public void onResponse(Call<PurchaseList> call, Response<PurchaseList> response) {
-                            PurchaseList purchaselist=response.body();
                             if(response.code()==200){
+                                PurchaseList purlist=response.body();
                                 AlertDialog.Builder builder = new AlertDialog.Builder(InputPurchase.this);
-                                dialog1 = builder.setMessage("지출내역 입력이 완료되었습니다").setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                                dialog1 = builder.setMessage("지출내역 입력이 완료되었습니다.").setNegativeButton("확인", new DialogInterface.OnClickListener() {
                                     public void onClick(
                                             DialogInterface dialog, int id) {
-                                        Intent Ok = new Intent(getApplicationContext(),MainActivity.class);
-                                        startActivity(Ok);
+                                        Intent Ok = new Intent(getApplicationContext(),Tab2Fragment.class);
                                         finish();
                                     }
                                 }).create();
                                 dialog1.show();
-
                             }
                             else if(response.code()==500){
                                 showToast("전송 실패. 서버에러");

@@ -8,61 +8,52 @@
 
     <Button
         android:id="@+id/InputList"
-        android:layout_width="92dp"
-        android:layout_height="21dp"
+        android:layout_width="111dp"
+        android:layout_height="34dp"
         android:layout_below="@+id/coupangpwText"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/edit_round"
         android:text="수동지출내역입력"
         android:textColor="#ffffff"
         android:textSize="10dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="@+id/yearSave2" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="40dp"
         android:text="월"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/frag2_month"
-        app:layout_constraintEnd_toStartOf="@+id/frag2_day"
+        app:layout_constraintBottom_toBottomOf="@+id/textView102"
+        app:layout_constraintEnd_toStartOf="@+id/textView102"
         app:layout_constraintStart_toEndOf="@+id/frag2_month"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintTop_toTopOf="@+id/textView102" />
 
     <TextView
         android:id="@+id/frag2_month"
         android:layout_width="0dp"
         android:layout_height="41dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:text="12"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/prevmonth2"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintStart_toEndOf="@+id/prevmonth2" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="412dp"
+        android:layout_height="436dp"
+        app:layout_constraintBottom_toTopOf="@+id/InputList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/testview">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ListView
             android:id="@+id/listView2"
@@ -76,67 +67,59 @@
             android:dividerHeight="3dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
     </android.support.constraint.ConstraintLayout>
 
     <TextView
         android:id="@+id/dd2"
-        android:layout_width="116dp"
-        android:layout_height="26dp"
+        android:layout_width="124dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="66dp"
         android:text="이 날 쓴 금액"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintBottom_toBottomOf="@+id/yearSave2"
         app:layout_constraintEnd_toStartOf="@+id/MonthPrice2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prevmonth2"
-        app:layout_constraintVertical_bias="0.357" />
+        app:layout_constraintTop_toBottomOf="@+id/prevmonth2" />
 
     <TextView
         android:id="@+id/frag2_day"
-        android:layout_width="0dp"
+        android:layout_width="41dp"
         android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginEnd="42dp"
         android:text="12"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintEnd_toStartOf="@+id/textView102"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.272" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView102"
+        app:layout_constraintEnd_toEndOf="@+id/textView102"
+        app:layout_constraintStart_toStartOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/MonthPrice2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="148dp"
         android:text="0"
         android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frag2_day"
-        app:layout_constraintVertical_bias="0.215" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView112"
+        app:layout_constraintEnd_toStartOf="@+id/textView112"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/prevmonth2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/nextMonth2"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="38dp"
         app:layout_constraintEnd_toStartOf="@+id/frag2_month"
-        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_back" />
@@ -145,11 +128,9 @@
         android:id="@+id/nextMonth2"
         android:layout_width="0dp"
         android:layout_height="45dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginEnd="39dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toEndOf="@+id/textView102"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_media_play" />
@@ -159,54 +140,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="218dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="36dp"
         android:text="."
         android:textColor="#E91E63"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView102"
         android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="2dp"
         android:text="일"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/frag2_day"
+        app:layout_constraintBottom_toBottomOf="@+id/prevmonth2"
         app:layout_constraintEnd_toStartOf="@+id/nextMonth2"
-        app:layout_constraintStart_toEndOf="@+id/frag2_day"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/nextMonth2" />
 
     <TextView
         android:id="@+id/textView112"
         android:layout_width="50dp"
         android:layout_height="53dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="156dp"
         android:text="원"
         android:textSize="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/MonthPrice2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/MonthPrice2"
-        app:layout_constraintTop_toTopOf="@+id/MonthPrice2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/dd2" />
 
-    <TextView
-        android:id="@+id/testview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginBottom="182dp"
-        android:text="."
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

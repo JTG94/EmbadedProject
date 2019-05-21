@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class PurchaseList {
     @SerializedName("email") @Expose public String email;
     @SerializedName("item_name") @Expose public String item_name;
-    @SerializedName("price") @Expose public Integer price;
+    @SerializedName("price") @Expose public int price;
     @SerializedName("category") @Expose public String category;
     @SerializedName("food_category") @Expose public String food_category;
 
@@ -18,7 +18,7 @@ public class PurchaseList {
         return item_name;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
