@@ -2,6 +2,7 @@ package com.example.embadedproject.remote;
 
 import com.example.embadedproject.model.Budget;
 import com.example.embadedproject.model.BudgetStatus;
+import com.example.embadedproject.model.CategoryData;
 import com.example.embadedproject.model.DayList;
 import com.example.embadedproject.model.JWTToken;
 import com.example.embadedproject.model.Message;
@@ -21,6 +22,13 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface APIcall {
+
+    @GET("/history/category")
+    Call<CategoryData> requestCategoryPrice(
+            @Header("x-access-token") String token,
+            @Query("category") String category
+    );
+
     @FormUrlEncoded
     @POST("/history/new")
     Call<PurchaseList> InputPurchase(
@@ -29,6 +37,7 @@ public interface APIcall {
             @Field("price") int price,
             @Field("date") String date
     );
+
     @GET("/history/budget")
     Call<BudgetStatus> requestBudgetStatus(
             @Header("x-access-token") String token

@@ -1,0 +1,152 @@
+final APIcall apiCall = RetroClass.getApICall();
+        Call<CategoryData> foodcall = apiCall.requestCategoryPrice(token,"food");
+
+        foodcall.enqueue(new Callback<CategoryData>() {
+            @Override
+            public void onResponse(Call<CategoryData> call, Response<CategoryData> response) {
+                if(response.code()==200) {
+                    items.add(0, new Item((R.drawable.shop1), response.body()));
+                    Call<CategoryData> fashioncall = apiCall.requestCategoryPrice(token, "fashion");
+
+                    fashioncall.enqueue(new Callback<CategoryData>() {
+                        @Override
+                        public void onResponse(Call<CategoryData> call, Response<CategoryData> response2) {
+                            if (response2.code() == 200) {
+                                items.add(1, new Item((R.drawable.cloths), response2.body()));
+                                Call<CategoryData> cosmeticcall = apiCall.requestCategoryPrice(token, "cosmetic");
+
+                                cosmeticcall.enqueue(new Callback<CategoryData>() {
+                                    @Override
+                                    public void onResponse(Call<CategoryData> call, Response<CategoryData> response3) {
+                                        if (response3.code() == 200) {
+                                            items.add(2, new Item((R.drawable.comestic), response3.body()));
+                                            Call<CategoryData> digitalcall = apiCall.requestCategoryPrice(token, "disital");
+                                            digitalcall.enqueue(new Callback<CategoryData>() {
+                                                @Override
+                                                public void onResponse(Call<CategoryData> call, Response<CategoryData> response4) {
+                                                    if (response4.code() == 200) {
+                                                        items.add(3, new Item((R.drawable.digital), response4.body()));
+                                                        Call<CategoryData> homelivingcall = apiCall.requestCategoryPrice(token, "interior");
+                                                        homelivingcall.enqueue(new Callback<CategoryData>() {
+                                                            @Override
+                                                            public void onResponse(Call<CategoryData> call, Response<CategoryData> response5) {
+                                                                if (response5.code() == 200) {
+                                                                    items.add(4, new Item((R.drawable.homeliving2), response5.body()));
+                                                                    Call<CategoryData> kidcall = apiCall.requestCategoryPrice(token, "kids");
+                                                                    kidcall.enqueue(new Callback<CategoryData>() {
+                                                                        @Override
+                                                                        public void onResponse(Call<CategoryData> call, Response<CategoryData> response6) {
+                                                                            if (response6.code() == 200) {
+                                                                                items.add(5, new Item((R.drawable.baby), response6.body()));
+                                                                                Call<CategoryData> lifecall = apiCall.requestCategoryPrice(token, "life");
+                                                                                lifecall.enqueue(new Callback<CategoryData>() {
+                                                                                    @Override
+                                                                                    public void onResponse(Call<CategoryData> call, Response<CategoryData> response7) {
+                                                                                        if (response7.code() == 200) {
+                                                                                            items.add(6, new Item((R.drawable.health), response7.body()));
+                                                                                            if (response7.code() == 200) {
+                                                                                                Call<CategoryData> sportscall = apiCall.requestCategoryPrice(token, "sports");
+                                                                                                sportscall.enqueue(new Callback<CategoryData>() {
+                                                                                                    @Override
+                                                                                                    public void onResponse(Call<CategoryData> call, Response<CategoryData> response8) {
+                                                                                                        if (response8.code() == 200) {
+                                                                                                            items.add(7, new Item((R.drawable.sports), response8.body()));
+                                                                                                            Call<CategoryData> culturecall = apiCall.requestCategoryPrice(token, "culture");
+                                                                                                            culturecall.enqueue(new Callback<CategoryData>() {
+                                                                                                                @Override
+                                                                                                                public void onResponse(Call<CategoryData> call, Response<CategoryData> response9) {
+                                                                                                                    if (response9.code() == 200) {
+                                                                                                                        items.add(8, new Item((R.drawable.sports), response9.body()));
+                                                                                                                        layoutManager = new LinearLayoutManager(getActivity());
+                                                                                                                        recyclerView.setLayoutManager(layoutManager);
+                                                                                                                        Adapter = new MyAdapter(items, mContext);
+                                                                                                                        recyclerView.setAdapter(Adapter);
+                                                                                                                    } else if (response9.code() == 501)
+                                                                                                                        return;
+                                                                                                                }
+
+                                                                                                                @Override
+                                                                                                                public void onFailure(Call<CategoryData> call, Throwable t) {
+                                                                                                                    return;
+                                                                                                                }
+                                                                                                            });
+                                                                                                        } else if (response8.code() == 501)
+                                                                                                            return;
+                                                                                                    }
+
+                                                                                                    @Override
+                                                                                                    public void onFailure(Call<CategoryData> call, Throwable t) {
+                                                                                                        return;
+                                                                                                    }
+                                                                                                });
+                                                                                            } else if (response7.code() == 501)
+                                                                                                return;
+                                                                                        }
+
+                                                                                    }
+
+                                                                                    @Override
+                                                                                    public void onFailure(Call<CategoryData> call, Throwable t) {
+                                                                                        return;
+
+                                                                                    }
+                                                                                });
+                                                                            } else if (response6.code() == 501)
+                                                                                return;
+                                                                        }
+
+                                                                        @Override
+                                                                        public void onFailure(Call<CategoryData> call, Throwable t) {
+                                                                            return;
+
+                                                                        }
+                                                                    });
+                                                                } else if (response5.code() == 501)
+                                                                    return;
+                                                            }
+
+                                                            @Override
+                                                            public void onFailure(Call<CategoryData> call, Throwable t) {
+                                                                return;
+                                                            }
+                                                        });
+                                                    } else if (response4.code() == 501)
+                                                        return;
+                                                }
+
+                                                @Override
+                                                public void onFailure(Call<CategoryData> call, Throwable t) {
+                                                    return;
+                                                }
+                                            });
+                                        } else if (response3.code() == 501)
+                                            return;
+
+
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<CategoryData> call, Throwable t) {
+                                        return;
+                                    }
+                                });
+                            } else if (response2.code() == 501)
+                                return;
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<CategoryData> call, Throwable t) {
+                            return;
+                        }
+                    });
+                }
+                else if(response.code()==500)
+                    return;
+            }
+
+            @Override
+            public void onFailure(Call<CategoryData> call, Throwable t) {
+                return;
+            }
+        });
