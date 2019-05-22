@@ -2,6 +2,7 @@ package com.example.embadedproject;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.example.embadedproject.remote.APIcall;
 import com.example.embadedproject.remote.RetroClass;
 import com.example.embadedproject.tokenmanager.TokenManager;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -40,6 +42,7 @@ public class Tab6Fragment extends Fragment {
     ArrayList items = new ArrayList<Item>();
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,12 +55,14 @@ public class Tab6Fragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mContext = getActivity().getApplicationContext();
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(getActivity());
 
         tokenManager = new TokenManager(getActivity().getApplicationContext());
         String token = tokenManager.getto();
 
+
         final APIcall apiCall = RetroClass.getApICall();
-        Call<CategoryData> foodcall = apiCall.requestCategoryPrice(token,"food");
+        /*Call<CategoryData> foodcall = apiCall.requestCategoryPrice(token,"food");
         foodcall.enqueue(new Callback<CategoryData>() {
             @Override
             public void onResponse(Call<CategoryData> call, Response<CategoryData> response) {
@@ -72,9 +77,16 @@ public class Tab6Fragment extends Fragment {
             public void onFailure(Call<CategoryData> call, Throwable t) {
                 return;
             }
-        });
+        });*/
 
-        Call<CategoryData> sportcall = apiCall.requestCategoryPrice(token,"sports");
+
+
+
+
+
+
+
+        /*Call<CategoryData> sportcall = apiCall.requestCategoryPrice(token,"sports");
         sportcall.enqueue(new Callback<CategoryData>() {
             @Override
             public void onResponse(Call<CategoryData> call, Response<CategoryData> response) {
@@ -98,6 +110,10 @@ public class Tab6Fragment extends Fragment {
             public void onResponse(Call<CategoryData> call, Response<CategoryData> response) {
                 if(response.code()==200){
                     items.add(new Item((R.drawable.cloths),response.body()));
+                    layoutManager = new LinearLayoutManager(getActivity());
+                    recyclerView.setLayoutManager(layoutManager);
+                    Adapter = new MyAdapter(items, mContext);
+                    recyclerView.setAdapter(Adapter);
 
                 }
                 else if(response.code()==500)
@@ -109,7 +125,41 @@ public class Tab6Fragment extends Fragment {
                 return;
 
             }
-        });
+        });*/
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                Call<CategoryData> foodcall = apiCall.requestCategoryPrice(token,"food");
+                try {
+                    CategoryData realdata=foodcall.execute().body();
+                    items.add(new Item((R.drawable.shop1),realdata));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> fashioncall = apiCall.requestCategoryPrice(token,"");
+                try {
+                    CategoryData realdata2=fashioncall.execute().body();
+                    items.add(new Item((R.drawable.cloths),realdata2));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                return  null;
+        }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                recyclerView.setLayoutManager(layoutManager);
+                Adapter = new MyAdapter(items, mContext);
+                recyclerView.setAdapter(Adapter);
+
+            }
+        }.execute();
+
 
 
 
@@ -215,5 +265,7 @@ public class Tab6Fragment extends Fragment {
 
         public Item(int image, CategoryData data) {
             this.image=image;
-            this.categorydayta=data; } }
+            this.categorydayta=data;
+        }
+    }
 }
