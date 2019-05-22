@@ -2,6 +2,7 @@ package com.example.embadedproject;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -56,81 +57,19 @@ public class Tab6Fragment extends Fragment {
         mContext = getActivity().getApplicationContext();
         recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
+        int flag;
 
         tokenManager = new TokenManager(getActivity().getApplicationContext());
         String token = tokenManager.getto();
 
 
         final APIcall apiCall = RetroClass.getApICall();
-        /*Call<CategoryData> foodcall = apiCall.requestCategoryPrice(token,"food");
-        foodcall.enqueue(new Callback<CategoryData>() {
-            @Override
-            public void onResponse(Call<CategoryData> call, Response<CategoryData> response) {
-                if(response.code()==200){
-                    items.add(new Item((R.drawable.shop1), response.body()));
-                }
-                else if(response.code()==500)
-                    return;
-            }
-
-            @Override
-            public void onFailure(Call<CategoryData> call, Throwable t) {
-                return;
-            }
-        });*/
-
-
-
-
-
-
-
-
-        /*Call<CategoryData> sportcall = apiCall.requestCategoryPrice(token,"sports");
-        sportcall.enqueue(new Callback<CategoryData>() {
-            @Override
-            public void onResponse(Call<CategoryData> call, Response<CategoryData> response) {
-                if(response.code()==200){
-                    items.add(new Item((R.drawable.cloths),response.body()));
-                }
-                else if(response.code()==500)
-                    return;
-            }
-
-            @Override
-            public void onFailure(Call<CategoryData> call, Throwable t) {
-                return;
-
-            }
-        });
-
-        Call<CategoryData> fashioncall = apiCall.requestCategoryPrice(token,"fashion");
-        fashioncall.enqueue(new Callback<CategoryData>() {
-            @Override
-            public void onResponse(Call<CategoryData> call, Response<CategoryData> response) {
-                if(response.code()==200){
-                    items.add(new Item((R.drawable.cloths),response.body()));
-                    layoutManager = new LinearLayoutManager(getActivity());
-                    recyclerView.setLayoutManager(layoutManager);
-                    Adapter = new MyAdapter(items, mContext);
-                    recyclerView.setAdapter(Adapter);
-
-                }
-                else if(response.code()==500)
-                    return;
-            }
-
-            @Override
-            public void onFailure(Call<CategoryData> call, Throwable t) {
-                return;
-
-            }
-        });*/
-
         new AsyncTask<Void, Void, Void>() {
+            int flag=1;
             @Override
             protected Void doInBackground(Void... voids) {
                 Call<CategoryData> foodcall = apiCall.requestCategoryPrice(token,"food");
+
                 try {
                     CategoryData realdata=foodcall.execute().body();
                     items.add(new Item((R.drawable.shop1),realdata));
@@ -138,10 +77,108 @@ public class Tab6Fragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                Call<CategoryData> fashioncall = apiCall.requestCategoryPrice(token,"");
+                Call<CategoryData> fashioncall = apiCall.requestCategoryPrice(token,"fashion");
                 try {
                     CategoryData realdata2=fashioncall.execute().body();
                     items.add(new Item((R.drawable.cloths),realdata2));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> sportscall = apiCall.requestCategoryPrice(token,"sports");
+                try{
+                    Response<CategoryData> response=sportscall.execute();
+                    if(response.code()==200) {
+                        CategoryData realdata3=response.body();
+                        items.add(new Item((R.drawable.sports), realdata3));
+                    }
+                    else
+                        flag=0;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> digitalcall = apiCall.requestCategoryPrice(token,"digital");
+                try{
+                    Response<CategoryData> response=digitalcall.execute();
+                    if(response.code()==200) {
+                        CategoryData realdata4=response.body();
+                        items.add(new Item((R.drawable.digital), realdata4));
+                    }
+                    else
+                        flag=0;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> comesticcall = apiCall.requestCategoryPrice(token,"comestic");
+                try{
+                    Response<CategoryData> response=comesticcall.execute();
+                    if(response.code()==200) {
+                        CategoryData realdata4=response.body();
+                        items.add(new Item((R.drawable.digital), realdata4));
+                    }
+                    else
+                        flag=0;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> interiorcall = apiCall.requestCategoryPrice(token,"interior");
+                try{
+                    Response<CategoryData> response=interiorcall.execute();
+                    if(response.code()==200) {
+                        CategoryData realdata4=response.body();
+                        items.add(new Item((R.drawable.homeliving2), realdata4));
+                    }
+                    else
+                        flag=0;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> kidcall = apiCall.requestCategoryPrice(token,"kid");
+                try{
+                    Response<CategoryData> response=kidcall.execute();
+                    if(response.code()==200) {
+                        CategoryData realdata4=response.body();
+                        items.add(new Item((R.drawable.baby), realdata4));
+                    }
+                    else
+                        flag=0;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> lifecall = apiCall.requestCategoryPrice(token,"life");
+                try{
+                    Response<CategoryData> response=lifecall.execute();
+                    if(response.code()==200) {
+                        CategoryData realdata4=response.body();
+                        items.add(new Item((R.drawable.health), realdata4));
+                    }
+                    else
+                        flag=0;
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Call<CategoryData> culturecall = apiCall.requestCategoryPrice(token,"culture");
+                try{
+                    Response<CategoryData> response=culturecall.execute();
+                    if(response.code()==200) {
+                        CategoryData realdata4=response.body();
+                        items.add(new Item((R.drawable.travel), realdata4));
+                    }
+                    else
+                        flag=0;
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -159,47 +196,6 @@ public class Tab6Fragment extends Fragment {
 
             }
         }.execute();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
@@ -229,6 +225,15 @@ public class Tab6Fragment extends Fragment {
             ((MyViewHolder)viewHolder).textView.setText(mItems.get(position).categorydayta.category);
             ((MyViewHolder)viewHolder).priceView.setText(""+mItems.get(position).categorydayta.price);
 
+            ((MyViewHolder)viewHolder).imageView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity().getApplicationContext(), DetailCategory.class);
+                    intent.putExtra("Category",((MyViewHolder)viewHolder).textView.getText());
+                    startActivity(intent);
+                }
+            });
+
 
         }
 
@@ -238,7 +243,7 @@ public class Tab6Fragment extends Fragment {
         }
 
     }
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView textView;
         public TextView priceView;
@@ -248,6 +253,7 @@ public class Tab6Fragment extends Fragment {
             imageView = (ImageView)view.findViewById(R.id.categoryimage);
             textView= (TextView)view.findViewById(R.id.categoryname);
             priceView=(TextView)view.findViewById(R.id.categoryprice);
+
 
         }
     }

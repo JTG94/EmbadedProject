@@ -23,6 +23,8 @@ import retrofit2.http.Query;
 
 public interface APIcall {
 
+
+
     @GET("/history/category")
     Call<CategoryData> requestCategoryPrice(
             @Header("x-access-token") String token,

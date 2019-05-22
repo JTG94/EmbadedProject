@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InputPurchase"></activity>
+        <activity android:name=".DetailCategory"></activity>
+        <activity android:name=".InputPurchase" />
         <activity android:name=".Main4Activity" />
         <activity android:name=".MainActivity3" />
         <activity android:name=".MainActivity2" />
