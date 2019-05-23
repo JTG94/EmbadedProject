@@ -1,4 +1,4 @@
-/*
+
 package com.example.embadedproject;
 
 import android.support.v7.app.AppCompatActivity;
@@ -26,13 +26,13 @@ public class DetailCategory extends AppCompatActivity {
     private ArrayList<String> mChildList = null;
     private ArrayList<String> mChildListContent = null;
 
-    public ExpandableListView expandableListView; // ExpandableListView 변수 선언
+/*    public ExpandableListView expandableListView; // ExpandableListView 변수 선언
     public CustomExpandableListViewAdapter mCustomExpListViewAdapter; // 위 ExpandableListView를 받을 CustomAdapter(2번 class에 해당)를 선언
     public ArrayList<String> parentList; // ExpandableListView의 Parent 항목이 될 List 변수 선언
     public ArrayList<ChildListData> fruit; // ExpandableListView의 Child 항목이 될 List를 각각 선언
     public ArrayList<ChildListData> vegetables;
     public ArrayList<ChildListData> etc;
-    public HashMap<String, ArrayList<ChildListData>> childList; // 위 ParentList와 ChildList를 연결할 HashMap 변수 선언
+    public HashMap<String, ArrayList<ChildListData>> childList; // 위 ParentList와 ChildList를 연결할 HashMap 변수 선언*/
 
 
 
@@ -42,13 +42,14 @@ public class DetailCategory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_category);
 
-        String category= getIntent().getStringExtra("Category");
+    }
+       /* String category= getIntent().getStringExtra("Category");
         tokenManager = new TokenManager(getApplicationContext());
         String token = tokenManager.getto();
         showToast(category);
 
-        */
-/*final APIcall apiCall = RetroClass.getApICall();
+
+final APIcall apiCall = RetroClass.getApICall();
         Call<CategoryData> categorycall = apiCall.requestCategoryPrice(token,category);
         categorycall.enqueue(new Callback<CategoryData>() {
             @Override
@@ -70,7 +71,7 @@ public class DetailCategory extends AppCompatActivity {
             public void onFailure(Call<CategoryData> call, Throwable t) {
 
             }
-        });*//*
+        });
 
 
         parentList = new ArrayList<String>();
@@ -147,6 +148,6 @@ public class DetailCategory extends AppCompatActivity {
     void showToast(String msg)
     {
         Toast.makeText(this, ""+msg, Toast.LENGTH_LONG).show();
-    }
+    }*/
 }
-*/
+

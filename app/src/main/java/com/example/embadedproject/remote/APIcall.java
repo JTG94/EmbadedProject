@@ -6,6 +6,7 @@ import com.example.embadedproject.model.CategoryData;
 import com.example.embadedproject.model.DayList;
 import com.example.embadedproject.model.JWTToken;
 import com.example.embadedproject.model.Message;
+import com.example.embadedproject.model.MonthPercent;
 import com.example.embadedproject.model.MonthValue;
 import com.example.embadedproject.model.PrevCompare;
 import com.example.embadedproject.model.PurchaseList;
@@ -72,6 +73,10 @@ public interface APIcall {
             @Query("year") int year,
             @Query("month") int month
 
+    );
+    @GET("/history/percent")
+    Call<MonthPercent> PercentList(
+            @Header("x-access-token") String token
     );
 
     @FormUrlEncoded

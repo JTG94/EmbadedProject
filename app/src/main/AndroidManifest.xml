@@ -27,6 +27,7 @@
         <activity android:name=".UserOutActivity" />
         <activity android:name=".QuestionActivity" />
         <activity android:name=".FindpwActivity" />
+        <activity android:name=".CalenderActivity" />
         <activity android:name=".FindidActivity" />
         <activity android:name=".RegActivity" />
         <activity android:name=".LoginActivity" />

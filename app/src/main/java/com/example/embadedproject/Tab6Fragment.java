@@ -14,6 +14,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -118,7 +120,7 @@ public class Tab6Fragment extends Fragment {
                     Response<CategoryData> response=comesticcall.execute();
                     if(response.code()==200) {
                         CategoryData realdata4=response.body();
-                        items.add(new Item((R.drawable.digital), realdata4));
+                        items.add(new Item((R.drawable.comestic), realdata4));
                     }
                     else
                         flag=0;
@@ -247,15 +249,37 @@ public class Tab6Fragment extends Fragment {
         public ImageView imageView;
         public TextView textView;
         public TextView priceView;
+     //  private OnItemClickListener mListener;
+        public ImageView cartbtn;
+
+       // public interface OnItemClickListener{
+
+        //   void onMoveClick(int position);
+     //   }
+      //  public void setOnItemClickListener(OnItemClickListener listener){mListener = listener;}
+
 
         public MyViewHolder(View view) {
             super(view);
             imageView = (ImageView)view.findViewById(R.id.categoryimage);
             textView= (TextView)view.findViewById(R.id.categoryname);
             priceView=(TextView)view.findViewById(R.id.categoryprice);
+            cartbtn =(ImageView)view.findViewById(R.id.btn_item_cart1);
+
+            cartbtn.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                   // if(listener != null){
+                     //   int position = getAdapterPosition();
+                    //    if(position != RecyclerView.NO_POSITION){
+                       //     listener.onMoveClick(position);
 
 
+                }
+            });
         }
+
+
     }
     public class Item {
         int image;
