@@ -9,8 +9,9 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 //"http://203.249.127.32:65003/"
+//ec2-52-78-171-9.ap-northeast-2.compute.amazonaws.com:7001/
 public class RetroClass {
-    private static final String BASE_URL="http://203.249.127.32:65003/";
+    private static final String BASE_URL="http://ec2-52-78-171-9.ap-northeast-2.compute.amazonaws.com:7001/";
 
 
 

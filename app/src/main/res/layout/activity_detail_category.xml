@@ -16,6 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    출처: https://arabiannight.tistory.com/entry/안드로이드Android-ExpandableListView-만들기 [아라비안나이트]
+
 
 </android.support.constraint.ConstraintLayout>

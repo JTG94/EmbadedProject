@@ -20,6 +20,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface APIcall {
@@ -30,6 +31,13 @@ public interface APIcall {
     Call<CategoryData> requestCategoryPrice(
             @Header("x-access-token") String token,
             @Query("category") String category
+    );
+
+    @FormUrlEncoded
+    @PUT("/user/budget")
+    Call<Budget> postBudget(
+            @Header("x-access-token")String token,
+            @Field("budget") int budget
     );
 
     @FormUrlEncoded

@@ -4,15 +4,37 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryData {
     @SerializedName("category") @Expose public String category;
     @SerializedName("price") @Expose public int price;
     @SerializedName("success")@Expose public boolean success;
     @SerializedName("message")@Expose public String message;
-    @SerializedName("sibal")@Expose public String sibal;
-    @SerializedName("category_list_moblie")@Expose public ArrayList<day_list> category_list=new ArrayList<day_list>();
-    public class day_list{
+    @SerializedName("category_list_mobile")@Expose public Categorylist_mobile categorylist_mobile;
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Categorylist_mobile getCategorylist_mobile() {
+        return categorylist_mobile;
+    }
+
+    public class Categorylist_mobile{
+
         @SerializedName("1") @Expose public ArrayList<purchaselist> daylist1=new ArrayList<>();
         @SerializedName("2") @Expose public ArrayList<purchaselist> daylist2=new ArrayList<>();
         @SerializedName("3") @Expose public ArrayList<purchaselist> daylist3=new ArrayList<>();
@@ -45,14 +67,146 @@ public class CategoryData {
         @SerializedName("30") @Expose public ArrayList<purchaselist> daylist30=new ArrayList<>();
         @SerializedName("31") @Expose public ArrayList<purchaselist> daylist31=new ArrayList<>();
 
+        public ArrayList<purchaselist> getDaylist1() {
+            return daylist1;
+        }
+
+        public ArrayList<purchaselist> getDaylist2() {
+            return daylist2;
+        }
+
+        public ArrayList<purchaselist> getDaylist3() {
+            return daylist3;
+        }
+
+        public ArrayList<purchaselist> getDaylist4() {
+            return daylist4;
+        }
+
+        public ArrayList<purchaselist> getDaylist5() {
+            return daylist5;
+        }
+
+        public ArrayList<purchaselist> getDaylist6() {
+            return daylist6;
+        }
+
+        public ArrayList<purchaselist> getDaylist7() {
+            return daylist7;
+        }
+
+        public ArrayList<purchaselist> getDaylist8() {
+            return daylist8;
+        }
+
+        public ArrayList<purchaselist> getDaylist9() {
+            return daylist9;
+        }
+
+        public ArrayList<purchaselist> getDaylist10() {
+            return daylist10;
+        }
+
+        public ArrayList<purchaselist> getDaylist11() {
+            return daylist11;
+        }
+
+        public ArrayList<purchaselist> getDaylist12() {
+            return daylist12;
+        }
+
+        public ArrayList<purchaselist> getDaylist13() {
+            return daylist13;
+        }
+
+        public ArrayList<purchaselist> getDaylist14() {
+            return daylist14;
+        }
+
+        public ArrayList<purchaselist> getDaylist15() {
+            return daylist15;
+        }
+
+        public ArrayList<purchaselist> getDaylist16() {
+            return daylist16;
+        }
+
+        public ArrayList<purchaselist> getDaylist17() {
+            return daylist17;
+        }
+
+        public ArrayList<purchaselist> getDaylist18() {
+            return daylist18;
+        }
+
+        public ArrayList<purchaselist> getDaylist19() {
+            return daylist19;
+        }
+
+        public ArrayList<purchaselist> getDaylist20() {
+            return daylist20;
+        }
+
+        public ArrayList<purchaselist> getDaylist21() {
+            return daylist21;
+        }
+
+        public ArrayList<purchaselist> getDaylist22() {
+            return daylist22;
+        }
+
+        public ArrayList<purchaselist> getDaylist23() {
+            return daylist23;
+        }
+
+        public ArrayList<purchaselist> getDaylist24() {
+            return daylist24;
+        }
+
+        public ArrayList<purchaselist> getDaylist25() {
+            return daylist25;
+        }
+
+        public ArrayList<purchaselist> getDaylist26() {
+            return daylist26;
+        }
+
+        public ArrayList<purchaselist> getDaylist27() {
+            return daylist27;
+        }
+
+        public ArrayList<purchaselist> getDaylist28() {
+            return daylist28;
+        }
+
+        public ArrayList<purchaselist> getDaylist29() {
+            return daylist29;
+        }
+
+        public ArrayList<purchaselist> getDaylist30() {
+            return daylist30;
+        }
+
+        public ArrayList<purchaselist> getDaylist31() {
+            return daylist31;
+        }
 
         public class purchaselist{
             @SerializedName("item_name") @Expose public String item_name;
             @SerializedName("price") @Expose public String price;
             @SerializedName("purchase_date") @Expose public String purchase_date;
 
+            public String getItem_name() {
+                return item_name;
+            }
+
+            public String getPrice() {
+                return price;
+            }
+
+            public String getPurchase_date() {
+                return purchase_date;
+            }
         }
-
     }
-
 }
