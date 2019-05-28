@@ -269,11 +269,6 @@ public class Tab6Fragment extends Fragment {
             cartbtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                   // if(listener != null){
-                     //   int position = getAdapterPosition();
-                    //    if(position != RecyclerView.NO_POSITION){
-                       //     listener.onMoveClick(position);
-
 
                 }
             });

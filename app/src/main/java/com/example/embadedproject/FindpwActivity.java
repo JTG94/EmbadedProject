@@ -10,23 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-import com.example.embadedproject.Retrofit.INodeJS;
-import com.example.embadedproject.Retrofit.RetrofitClient;
 import com.example.embadedproject.model.Message;
 import com.example.embadedproject.remote.APIcall;
 import com.example.embadedproject.remote.RetroClass;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class FindpwActivity extends AppCompatActivity {
     private AlertDialog dialog1;

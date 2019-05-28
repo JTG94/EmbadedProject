@@ -1,3 +1,4 @@
+/*
 package com.example.embadedproject.Retrofit;
 
 import io.reactivex.Observable;
@@ -15,13 +16,15 @@ public interface INodeJS {
                                     @Field("coupang_id") String coupid,
                                     @Field("coupang_pw") String couppw);
 
-   /* @POST("auth/login")
+   */
+/* @POST("auth/login")
     @FormUrlEncoded
     Call<JWTToken> loginUser(
 
                                     @Field("email") String email,
                                     @Field("password") String password
-    );*/
+    );*//*
+
 
     @POST("auth/search/id")
     @FormUrlEncoded
@@ -41,3 +44,4 @@ public interface INodeJS {
 
 
 }
+*/

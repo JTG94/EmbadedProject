@@ -15,8 +15,9 @@
         android:layout_above="@+id/idText"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="191dp"
-        android:src="@drawable/logo" />
+        android:layout_marginBottom="192dp"
+        android:src="@drawable/logo"
+        tools:srcCompat="@drawable/courait01" />
 
     <TextView
         android:id="@+id/textView"

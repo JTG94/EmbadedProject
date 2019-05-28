@@ -1,8 +1,5 @@
 package com.example.embadedproject;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;

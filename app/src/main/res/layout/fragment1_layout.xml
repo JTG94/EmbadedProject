@@ -8,38 +8,43 @@
 
     <Button
         android:id="@+id/calendarbutton"
-        android:layout_width="92dp"
-        android:layout_height="21dp"
+        android:layout_width="147dp"
+        android:layout_height="29dp"
         android:layout_below="@+id/coupangpwText"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/edit_round"
         android:text="달력으로보기"
         android:textColor="#ffffff"
-        android:textSize="10dp"
+        android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yearSave" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/prevText">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="389dp"
+        android:layout_height="376dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aa">
 
         <ListView
             android:id="@+id/listVIew"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="379dp"
+            android:layout_height="363dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -54,33 +59,42 @@
 
     <TextView
         android:id="@+id/dd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="17dp"
+        android:layout_width="163dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="82dp"
         android:text="이번달 지출 총 금액"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/aa"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintHorizontal_bias="0.354"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prevmonth" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/MainMonth"
         android:layout_width="0dp"
-        android:layout_height="41dp"
+        android:layout_height="42dp"
         android:text="초기화면"
         android:textSize="30dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="@+id/prevmonth"
         app:layout_constraintEnd_toStartOf="@+id/textView10"
-        app:layout_constraintStart_toEndOf="@+id/prevmonth" />
+        app:layout_constraintStart_toEndOf="@+id/prevmonth"
+        app:layout_constraintTop_toTopOf="@+id/prevmonth" />
 
     <TextView
         android:id="@+id/MonthPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="초기화면"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dd" />
 
@@ -88,83 +102,106 @@
         android:id="@+id/aa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="54dp"
         android:text="저번 달  대비"
         android:textColor="@android:color/holo_red_light"
-        app:layout_constraintBottom_toTopOf="@+id/prevText"
-        app:layout_constraintEnd_toEndOf="@+id/prevText" />
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toEndOf="@+id/yearSave"
+        app:layout_constraintTop_toBottomOf="@+id/dd" />
 
     <TextView
         android:id="@+id/prevText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="253dp"
-        android:layout_marginEnd="12dp"
+        android:layout_width="104dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:text="TextView"
         android:textColor="@android:color/holo_red_light"
         android:textColorLink="@android:color/holo_red_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/aa"
+        app:layout_constraintTop_toBottomOf="@+id/aa"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
         android:id="@+id/prevmonth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="93dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/dd"
         app:layout_constraintEnd_toStartOf="@+id/MainMonth"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_back" />
+        app:layout_constraintVertical_bias="0.277"
+        app:srcCompat="@drawable/next2" />
 
     <ImageButton
         android:id="@+id/nextMonth"
-        android:layout_width="0dp"
+        android:layout_width="44dp"
         android:layout_height="45dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/dd"
+        android:layout_marginEnd="44dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_media_play" />
-
-    <TextView
-        android:id="@+id/yearSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="30dp"
-        android:text="."
-        android:textColor="#E91E63"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        app:srcCompat="@drawable/next3" />
 
     <TextView
         android:id="@+id/textView10"
         android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="155dp"
         android:text="월"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/dd"
-        app:layout_constraintEnd_toStartOf="@+id/nextMonth"
+        app:layout_constraintBottom_toBottomOf="@+id/MainMonth"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/MainMonth"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/MainMonth" />
 
     <TextView
         android:id="@+id/textView11"
-        android:layout_width="76dp"
-        android:layout_height="54dp"
+        android:layout_width="49dp"
+        android:layout_height="56dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:text="원"
         android:textSize="40dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/MonthPrice"
-        app:layout_constraintStart_toEndOf="@+id/MonthPrice" />
+        app:layout_constraintBottom_toTopOf="@+id/aa"
+        app:layout_constraintEnd_toEndOf="@+id/aa"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/MonthPrice"
+        app:layout_constraintTop_toTopOf="@+id/MonthPrice"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/yearSave"
+        android:layout_width="38dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="."
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
 
 </android.support.constraint.ConstraintLayout>

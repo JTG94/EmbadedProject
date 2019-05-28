@@ -55,9 +55,6 @@ public class Tab5Fragment extends Fragment {
 
         return view;
 
-
-
-
     }
 
 
@@ -94,11 +91,57 @@ public class Tab5Fragment extends Fragment {
                     ListView listView = getView().findViewById(R.id.RankList_View);
                     listView.setAdapter(adapter);
 
-                  /*  DayList dayinfo = response.body();
-                    monthprice.setText("" + dayinfo.getDay_price());
-                    DayPriceListAdapter adapter = new DayPriceListAdapter(getActivity().getApplicationContext(), dayinfo.getDay_list());
-                    ListView listview = getView().findViewById(R.id.listView2);
-                    listview.setAdapter(adapter);*/
+                    pieChart = (PieChart) getView().findViewById(R.id.piechart);
+                    pieChart.setUsePercentValues(true);
+                    pieChart.getDescription().setEnabled(false);
+                    pieChart.setExtraOffsets(5, 10, 5, 5);
+                    pieChart.setDragDecelerationFrictionCoef(0.95f);
+                    pieChart.setDrawHoleEnabled(false);
+                    pieChart.setHoleColor(Color.WHITE);
+                    pieChart.setTransparentCircleRadius(61f);
+
+                    ArrayList<PieEntry> yValues = new ArrayList<>();
+                    if (food_per != 0) {
+                        yValues.add(new PieEntry(food_per, "식품"));
+                    }
+                    if (fasion_per != 0) {
+                        yValues.add(new PieEntry(fasion_per, "패션"));
+                    }
+                    if (cosmetic_per != 0) {
+                        yValues.add(new PieEntry(cosmetic_per, "화장품/미용"));
+                    }
+                    if (digital_per != 0) {
+                        yValues.add(new PieEntry(digital_per, "디지털/가전"));
+                    }
+                    if (interior_per != 0) {
+                        yValues.add(new PieEntry(interior_per, "가구/인테리어"));
+                    }
+                    if (kid_per != 0) {
+                        yValues.add(new PieEntry(kid_per, "출산/육아"));
+                    }
+                    if (sports_per != 0) {
+                        yValues.add(new PieEntry(sports_per, "스포츠/레저"));
+                    }
+                    if (life_per != 0) {
+                        yValues.add(new PieEntry(life_per, "생활/건강"));
+                    }
+                    if (culture_per != 0) {
+                        yValues.add(new PieEntry(culture_per, "여행/문화"));
+                    }
+                    pieChart.animateY(1300, Easing.EasingOption.EaseInOutCubic);
+
+                    PieDataSet dataSet = new PieDataSet(yValues, "분류별 점유율");
+                    dataSet.setSliceSpace(3f);
+                    dataSet.setSelectionShift(5f);
+                    dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+                    PieData data = new PieData((dataSet));
+                    data.setValueTextSize(15f);
+                    data.setValueTextColor(Color.YELLOW);
+
+                    pieChart.setData(data);
+                }else if(response.code()==501){
+                    showToast("결과 없음");
                 }
             }
 
@@ -109,55 +152,6 @@ public class Tab5Fragment extends Fragment {
         });
 
 
-        pieChart = (PieChart) getView().findViewById(R.id.piechart);
-        pieChart.setUsePercentValues(true);
-        pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5, 10, 5, 5);
-        pieChart.setDragDecelerationFrictionCoef(0.95f);
-        pieChart.setDrawHoleEnabled(false);
-        pieChart.setHoleColor(Color.WHITE);
-        pieChart.setTransparentCircleRadius(61f);
-
-        ArrayList<PieEntry> yValues = new ArrayList<>();
-        if (food_per != 0) {
-            yValues.add(new PieEntry(food_per, "식품"));
-        }
-        if (fasion_per != 0) {
-            yValues.add(new PieEntry(fasion_per, "패션"));
-        }
-        if (cosmetic_per != 0) {
-            yValues.add(new PieEntry(cosmetic_per, "화장품/미용"));
-        }
-        if (digital_per != 0) {
-            yValues.add(new PieEntry(digital_per, "디지털/가전"));
-        }
-        if (interior_per != 0) {
-            yValues.add(new PieEntry(interior_per, "가구/인테리어"));
-        }
-        if (kid_per != 0) {
-            yValues.add(new PieEntry(kid_per, "출산/육아"));
-        }
-        if (sports_per != 0) {
-            yValues.add(new PieEntry(sports_per, "스포츠/레저"));
-        }
-        if (life_per != 0) {
-            yValues.add(new PieEntry(life_per, "생활/건강"));
-        }
-        if (culture_per != 0) {
-            yValues.add(new PieEntry(culture_per, "여행/문화"));
-        }
-        pieChart.animateY(1300, Easing.EasingOption.EaseInOutCubic);
-
-        PieDataSet dataSet = new PieDataSet(yValues, "분류별 점유율");
-        dataSet.setSliceSpace(3f);
-        dataSet.setSelectionShift(5f);
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-
-        PieData data = new PieData((dataSet));
-        data.setValueTextSize(15f);
-        data.setValueTextColor(Color.YELLOW);
-
-        pieChart.setData(data);
 
     }
 

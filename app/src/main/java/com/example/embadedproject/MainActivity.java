@@ -51,13 +51,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         setContentView(R.layout.activity_main);
         Integer month= LocalDate.now().getMonthValue();
         Integer year=LocalDate.now().getYear();
-        /*Intent YearIntent = new Intent(getApplicationContext(), Tab1Fragment.class);
-        YearIntent.putExtra("year",year);
-        Intent MonthIntent = new Intent(getApplicationContext(), Tab1Fragment.class);
-        MonthIntent.putExtra("month",month);*/
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -224,9 +217,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

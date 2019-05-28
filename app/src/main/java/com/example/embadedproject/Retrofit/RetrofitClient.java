@@ -1,3 +1,4 @@
+/*
 package com.example.embadedproject.Retrofit;
 
 import com.google.gson.Gson;
@@ -27,3 +28,4 @@ public class RetrofitClient {
         return getInstance().create(INodeJS.class);
     }
 }
+*/

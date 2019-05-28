@@ -89,6 +89,8 @@ public class Tab3Fragment extends Fragment {
                                             if(response.code()==200) {
                                                 showToast("예산설정이 완료되었습니다.");
                                                 text2.setText(budget.toString()+"원");
+                                                Intent startintent=new Intent(getActivity().getApplicationContext(),MainActivity2.class);
+                                                startActivity(startintent);
                                             }
                                             else
                                                 showToast("서버에러");

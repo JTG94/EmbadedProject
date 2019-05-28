@@ -80,7 +80,6 @@ public class Tab2Fragment extends Fragment {
                     NullListAdapter adapter = new NullListAdapter(getActivity().getApplicationContext());
                     ListView listview = (ListView) getView().findViewById(R.id.listView2);
                     listview.setAdapter(adapter);
-                    showToast("결과없음");
                 }
             }
 
@@ -103,16 +102,12 @@ public class Tab2Fragment extends Fragment {
                 Integer int_month2 = new Integer(curMonth);
                 Integer int_year2 = new Integer(curYear);
 
-
-
-
                 if (int_day2 == 1) {
                     showToast("끝입니다.");
                     return;
                 }
                 else {
                     int_day2--;
-
                     monthtext.setText(int_month2.toString());
                     daytext.setText(int_day2.toString());
                     Call<DayList> daycall2 = apiCall.DayListCall(token, int_year2,int_month2,int_day2);
@@ -156,16 +151,12 @@ public class Tab2Fragment extends Fragment {
                 Integer int_month2 = new Integer(curMonth);
                 Integer int_year2 = new Integer(curYear);
 
-
-
-
                 if (int_day2 == 31) {
                     showToast("끝입니다.");
                     return;
                 }
                 else {
                     int_day2++;
-
                     monthtext.setText(int_month2.toString());
                     daytext.setText(int_day2.toString());
                     Call<DayList> daycall2 = apiCall.DayListCall(token, int_year2,int_month2,int_day2);
@@ -213,7 +204,5 @@ public class Tab2Fragment extends Fragment {
     {
         Toast.makeText(getActivity(),""+msg, Toast.LENGTH_LONG).show();
     }
-
-
 }
 

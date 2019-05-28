@@ -11,29 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-import com.example.embadedproject.Retrofit.INodeJS;
-import com.example.embadedproject.Retrofit.RetrofitClient;
-import com.example.embadedproject.model.JWTToken;
 import com.example.embadedproject.model.Message;
 import com.example.embadedproject.remote.APIcall;
 import com.example.embadedproject.remote.RetroClass;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
-import org.json.JSONObject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-
 public class RegActivity extends AppCompatActivity {
-    INodeJS myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     private AlertDialog dialog1;
     public String check;
@@ -55,13 +42,6 @@ public class RegActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_reg);
-
-
-        //Init API
-     /*   Retrofit retrofit = RetrofitClient.getInstance();
-        myAPI = retrofit.create(INodeJS.class);*/
-
-
         ImageButton backbtn = (ImageButton) findViewById(R.id.backbtn);
        final EditText name = (EditText)findViewById(R.id.nameText);
        final EditText email = (EditText)findViewById(R.id.idText);
@@ -125,23 +105,13 @@ public class RegActivity extends AppCompatActivity {
                     public void onResponse(Call<Message> call, Response<Message> response) {
                         if (response.isSuccessful()) {
                             Message message = response.body();
-
-                            /*  try {*/
-
-                           /* Message message = response.body();
-                            //String status = response.body().toString();*/
                             if (response.code() == 200) {
-                                // showToast(""+status);
-                                // showToast(""+response.code());
                                 showToast("" +message.getMessage().toString());
-                                /*Intent loginIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(loginIntent);*/
                                 finish();
                             }
                         }else{
 
                             if (response.code() == 500) {
-
                                 showToast("서버오류");
                             }else if(response.code()==501){
                                 email.setError("다른 아이디를 사용하세요.");
@@ -155,25 +125,9 @@ public class RegActivity extends AppCompatActivity {
                             }
                         }
                     }
-                            /*else if(response.code()==500){
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                dialog = builder.setMessage("계정을 다시 확인하세요.").setNegativeButton("다시시도", null).create();
-                                dialog.show();
-                            }*/
-                      /*  }catch(Exception e){
-                            if(response.code()==500){
-                                showToast("500 코드 인지"+message.getMessage().toString());
-                            }
-
-
-                            e.printStackTrace();
-                        }*/
-
-                   /* }*/
-
                     @Override
                     public void onFailure(Call<Message> call, Throwable t) {
-                        showToast("Failer에서 응답");
+                        showToast("네트워크 상태를 확인해주세요");
                     }
                 });
 
@@ -181,35 +135,7 @@ public class RegActivity extends AppCompatActivity {
         });
     }
 
-    /*private void registerUser(String name, String email, String phone, String password, String coupang_id, String coupang_pw) {
-        compositeDisposable.add(myAPI.registerUser(name,email,phone,password,coupang_id,coupang_pw)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>(){
-                    @Override
-                    public void accept(String s) throws Exception {
-                        String json = s;
-                        JsonParser parser = new JsonParser();
-                        JsonElement element = parser.parse(json);
-                        boolean success = element.getAsJsonObject().get("success").getAsBoolean();
 
-                        if(success) {
-
-                            Intent regIntent = new Intent(getApplicationContext(), LoginActivity.class);
-                            startActivity(regIntent);
-                           Toast.makeText(RegActivity.this, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                           // Toast.makeText(RegActivity.this,""+status,Toast.LENGTH_LONG).show();
-                        }else{
-
-
-                            Toast.makeText(RegActivity.this,"회원가입 실패",Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-
-                })
-        );
-    }*/
     void showToast(String msg)
     {
         Toast.makeText(this, ""+msg, Toast.LENGTH_LONG).show();
