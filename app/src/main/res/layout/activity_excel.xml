@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".FindpwActivity">
+    tools:context=".FindidActivity">
     <ImageButton
-        android:id="@+id/backbtn2"
+        android:id="@+id/backbtn15"
         android:layout_width="50dip"
         android:layout_height="42dp"
         android:layout_alignParentStart="true"
@@ -32,32 +32,13 @@
         android:layout_marginTop="6dp"
         android:layout_marginEnd="124dp"
         android:layout_marginRight="124dp"
-        android:text="비밀번호 찾기"
-        android:textStyle="bold"
+        android:text="엑셀파일전송"
         android:textColor="@color/white"
-        android:textSize="32sp" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="255dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="83dp"
-        android:layout_marginLeft="83dp"
-        android:layout_marginTop="169dp"
-        android:layout_marginEnd="73dp"
-        android:layout_marginRight="73dp"
-        android:text="Don't Worry!"
-        android:textColor="@color/white"
-        android:textSize="45sp"
+        android:textSize="32sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/yearInput"
         android:layout_width="196dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -70,13 +51,13 @@
         android:layout_marginTop="287dp"
         android:layout_marginEnd="174dp"
         android:layout_marginRight="174dp"
-        android:text="이름을 입력해주세요."
+        android:text="연도를 입력해 주세요"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/nameText"
+        android:id="@+id/yearInput2"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
 
@@ -92,56 +73,14 @@
         android:layout_marginRight="54dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/edit_round2"
-        android:drawableLeft="@drawable/ic_name"
-        android:hint="Name"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:hint="ex)2019"
         android:padding="10dp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="365dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:text="이메일을 입력해주세요."
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/emailText"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="center"
-        android:layout_marginStart="2dp"
-
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="392dp"
-        android:layout_marginEnd="54dp"
-        android:layout_marginRight="54dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/edit_round2"
-        android:drawableLeft="@drawable/ic_action_email"
-        android:hint="Email"
-        android:padding="10dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff" />
-
-    <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/textView26"
         android:layout_width="237dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -151,16 +90,16 @@
         android:layout_alignParentRight="true"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="371dp"
         android:layout_marginEnd="130dp"
         android:layout_marginRight="130dp"
-        android:text="핸드폰 번호를 입력 해 주세요."
+        android:text="월을 입력해주세요."
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/phoneText"
+        android:id="@+id/monthInput"
         android:layout_width="280dp"
         android:layout_height="wrap_content"
 
@@ -171,21 +110,21 @@
         android:layout_alignParentRight="true"
 
         android:layout_gravity="center"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginTop="472dp"
+        android:layout_marginStart="77dp"
+        android:layout_marginLeft="77dp"
+        android:layout_marginTop="399dp"
         android:layout_marginEnd="54dp"
         android:layout_marginRight="54dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/edit_round2"
-        android:drawableLeft="@drawable/ic_phone"
-        android:hint="Phone Number"
+        android:drawableLeft="@drawable/ic_date_range_black_24dp"
+        android:hint="ex) 6"
         android:padding="10dp"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff" />
 
     <Button
-        android:id="@+id/findpwButton"
+        android:id="@+id/excelButton"
         android:layout_width="200dp"
         android:layout_height="40dp"
 
@@ -198,12 +137,12 @@
         android:layout_gravity="center"
         android:layout_marginStart="113dp"
         android:layout_marginLeft="113dp"
-        android:layout_marginTop="543dp"
+        android:layout_marginTop="470dp"
         android:layout_marginEnd="98dp"
         android:layout_marginRight="98dp"
         android:layout_marginBottom="27dp"
         android:background="@drawable/edit_round"
-        android:text="비밀번호 찾기"
+        android:text="다운로드"
         android:textColor="#ffffff"
         android:textSize="20dp"
         android:textStyle="bold" />

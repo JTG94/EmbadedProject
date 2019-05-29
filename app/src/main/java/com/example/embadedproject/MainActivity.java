@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private TokenManager tokenManager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         Integer year=LocalDate.now().getYear();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,19 +236,22 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         } else if (id == R.id.question) {
             Intent qitent = new Intent(getApplicationContext(),QuestionActivity.class);
             startActivity(qitent);
-        } else if (id == R.id.logout) {
-            Intent intent = new Intent(getApplication(), LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK|
-                    Intent.FLAG_ACTIVITY_NO_HISTORY);   // 액티비티의 플래그 설정
 
-            startActivity(intent);
-
+        }
+        else if(id==R.id.excel) {
+            Intent dditent = new Intent(getApplicationContext(),Excel.class);
+            startActivity(dditent);
         }
 
 
 
-
+        else if (id == R.id.logout) {
+            Intent intent = new Intent(getApplication(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK|
+                    Intent.FLAG_ACTIVITY_NO_HISTORY);   // 액티비티의 플래그 설정
+            startActivity(intent);
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

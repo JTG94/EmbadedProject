@@ -24,6 +24,12 @@ import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface APIcall {
+    @GET("history/excelmobile")
+    Call<Message> requestExcel(
+            @Header("x-access-token") String token,
+            @Query("year") int year,
+            @Query("month") int month
+    );
 
 
 
